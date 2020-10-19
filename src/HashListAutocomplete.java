@@ -18,11 +18,10 @@ public class HashListAutocomplete implements Autocompletor
     }
     public void initialize(String[] terms, double[] weights)
     {
-        if(myMap.isEmpty())
-        {
-           myMap=new HashMap<>();
-        }
-        else {
+
+        myMap=new HashMap<String, List<Term>>();
+
+        if(!myMap.isEmpty()){
             myMap.clear();
         }
 
