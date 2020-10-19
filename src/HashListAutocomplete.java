@@ -23,8 +23,9 @@ public class HashListAutocomplete implements Autocompletor
             Term t = new Term(terms[i],weights[i]);
             for(int j =0; j<MAX_PREFIX;j++)
             {
+                ArrayList<Term> arr = new ArrayList<>();
                 String pre = t.getWord().substring(0,j);
-                myMap.putIfAbsent(pre, new ArrayList<>() );
+                myMap.putIfAbsent(pre,arr);
                 myMap.get(pre).add(t);
             }
         }
