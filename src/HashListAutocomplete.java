@@ -18,6 +18,7 @@ public class HashListAutocomplete implements Autocompletor
     }
     public void initialize(String[] terms, double[] weights)
     {
+        myMap.clear();
         myMap=new HashMap<String, List<Term>>();
         for(int i =0; i< terms.length;i++)
         {
@@ -26,7 +27,7 @@ public class HashListAutocomplete implements Autocompletor
             {
                 ArrayList<Term> arr = new ArrayList<>();
                 String pre ="";
-                if(j<=t.getWord().length()+1)
+                if(j<=terms[i].length()+1)
                 {
                     pre = t.getWord().substring(0,j);
                 }
