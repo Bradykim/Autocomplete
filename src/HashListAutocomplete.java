@@ -10,6 +10,9 @@ public class HashListAutocomplete implements Autocompletor
         if (terms == null || weights == null) {
             throw new NullPointerException("One or more arguments null");
         }
+        if (terms.length != weights.length) {
+            throw new IllegalArgumentException("terms and weights are not the same length");
+        }
 
         initialize(terms,weights);
     }
@@ -17,33 +20,19 @@ public class HashListAutocomplete implements Autocompletor
     {
         for(int i =0; i< terms.length;i++)
         {
-            String key = terms[i];
-            if(MAX_PREFIX<=key.length())
+            Term t = new Term(terms[i],weights[i]);
+            for(int j =0; j<MAX_PREFIX;j++)
             {
-                for(int j =0; j<MAX_PREFIX;j++)
-                {
-                    String prefix = key.substring(0,i);
-                    myMap.putIfAbsent(prefix,new ArrayList<Term>());
-                    myMap.get(key).add(new Term(key,weights[i]));
-                }
+                String pre = t.getWord().substring(0,j);
+                myMap.putIfAbsent(pre, new ArrayList<>() );
+                myMap.get(pre).add(t);
             }
-            else{
-                for(int j =0; j<key.length();j++)
-                {
-                    String prefix = key.substring(0,i);
-                    myMap.putIfAbsent(prefix,new ArrayList<>());
-                    myMap.get(key).add(new Term(key,weights[i]));
-                }
+        }
 
-            }
-        }
-        for(String key:myMap.keySet())
-        {
-            Collections.sort(myMap.get(key), Comparator.comparing(Term::getWeight).reversed());
-        }
 
     }
     public List<Term> topMatches(String prefix, int k) {
+
         if(myMap.containsKey(prefix))
         {
             List<Term> all = myMap.get(prefix);
