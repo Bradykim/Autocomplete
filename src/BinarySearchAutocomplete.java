@@ -101,16 +101,34 @@ public class BinarySearchAutocomplete implements Autocompletor {
 	public List<Term> topMatches(String prefix, int k) {
 		Term dummy = new Term(prefix,0);
 		PrefixComparator comp = PrefixComparator.getComparator(prefix.length());
+		PriorityQueue<Term> pq = new PriorityQueue<Term>(Comparator.comparing(Term::getWeight));
 		int first = firstIndexOf(myTerms, dummy, comp);
 		int last = lastIndexOf(myTerms, dummy, comp);
 
 		if (first == -1) {               // prefix not found
 			return new ArrayList<>();
 		}
+		if (k < 0) {
+			throw new IllegalArgumentException("Illegal value of k:"+k);
+		}
+		Term[] terms = Arrays.copyOfRange(myTerms,first,last+1);
+		for (Term t : terms) {
+			if (!t.getWord().startsWith(prefix))
+				continue;
+			if (pq.size() < k) {
+				pq.add(t);
+			} else if (pq.peek().getWeight() < t.getWeight()) {
+				pq.remove();
+				pq.add(t);
+			}
+		}
+		int numResults = Math.min(k, pq.size());
+		LinkedList<Term> ret = new LinkedList<>();
+		for (int i = 0; i < numResults; i++) {
+			ret.addFirst(pq.remove());
+		}
+		return ret;
 
-		// write code here for P5 assignment
-
-		return null;
 	
 	}
 
