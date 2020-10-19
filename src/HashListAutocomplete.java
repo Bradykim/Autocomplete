@@ -28,10 +28,7 @@ public class HashListAutocomplete implements Autocompletor
             {
                 ArrayList<Term> arr = new ArrayList<>();
                 String pre ="";
-                if(j<=)
-                {
-                    pre = t.getWord().substring(0,j);
-                }
+                pre = t.getWord().substring(0,j);
                 myMap.putIfAbsent(pre,arr);
                 myMap.get(pre).add(t);
             }
