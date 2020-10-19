@@ -18,9 +18,6 @@ public class HashListAutocomplete implements Autocompletor
     }
     public void initialize(String[] terms, double[] weights)
     {
-        if(!myMap.isEmpty()){
-            myMap.clear();
-        }
         myMap=new HashMap<String, List<Term>>();
         for(int i =0; i< terms.length;i++)
         {
