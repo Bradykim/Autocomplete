@@ -111,6 +111,9 @@ public class BinarySearchAutocomplete implements Autocompletor {
 		if (k < 0) {
 			throw new IllegalArgumentException("Illegal value of k:"+k);
 		}
+		if(k==0){
+			return new LinkedList<>();
+		}
 		Term[] terms = Arrays.copyOfRange(myTerms,first,last+1);
 		for (Term t : terms) {
 			if (!t.getWord().startsWith(prefix))
