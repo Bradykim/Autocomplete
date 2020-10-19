@@ -36,7 +36,10 @@ public class HashListAutocomplete implements Autocompletor
                 {
                     pre = t.getWord().substring(0,j);
                 }
-                myMap.putIfAbsent(pre,arr);
+                if(pre!=" ")
+                {
+                    myMap.putIfAbsent(pre,arr);
+                }
                 myMap.get(pre).add(t);
             }
         }
