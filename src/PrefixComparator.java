@@ -38,10 +38,11 @@ public class PrefixComparator implements Comparator<Term> {
         int wlength = w.getWord().length();
         String vword = v.getWord();
         String wword = w.getWord();
-        int vvalue =0;
-        int wvalue =0;
+
         for(int i = 0; i<myPrefixSize; i++)
         {
+            int vvalue =0;
+            int wvalue =0;
             if(vlength>i)
             {
                  vvalue = vword.charAt(i);
