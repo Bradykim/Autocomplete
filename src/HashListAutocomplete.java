@@ -24,7 +24,7 @@ public class HashListAutocomplete implements Autocompletor
         for(int i =0; i< terms.length;i++)
         {
             Term t = new Term(terms[i],weights[i]);
-            for(int j =0; j<Math.min(MAX_PREFIX,terms[i].length()+1);j++)
+            for(int j =0; j<Math.min(MAX_PREFIX + 1,terms[i].length()+1);j++)
             {
                 ArrayList<Term> arr = new ArrayList<>();
                 String pre ="";
