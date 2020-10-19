@@ -41,7 +41,9 @@ public class HashListAutocomplete implements Autocompletor
 
     }
     public List<Term> topMatches(String prefix, int k) {
-
+        if(k==0){
+            return new ArrayList<>();
+        }
         if(myMap.containsKey(prefix))
         {
             List<Term> all = myMap.get(prefix);
