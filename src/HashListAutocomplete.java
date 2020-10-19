@@ -62,10 +62,10 @@ public class HashListAutocomplete implements Autocompletor
         if (mySize == 0) {
 
             for(String key : myMap.keySet()) {
-                List<Term> arr =myMap.get(key);
+                mySize = mySize+BYTES_PER_CHAR*key.length();
+                List<Term> arr = myMap.get(key);
                 for(Term t : arr){
-                    mySize += BYTES_PER_DOUBLE +
-                            BYTES_PER_CHAR*t.getWord().length();
+                    mySize = mySize+ t.getWord().length()* BYTES_PER_CHAR+ BYTES_PER_DOUBLE;
                 }
 
             }

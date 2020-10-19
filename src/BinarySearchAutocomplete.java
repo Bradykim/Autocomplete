@@ -108,7 +108,7 @@ public class BinarySearchAutocomplete implements Autocompletor {
 		if (first == -1) {               // prefix not found
 			return new ArrayList<>();
 		}
-		if (k < 0) {
+		if (k <= 0) {
 			throw new IllegalArgumentException("Illegal value of k:"+k);
 		}
 		Term[] terms = Arrays.copyOfRange(myTerms,first,last+1);
