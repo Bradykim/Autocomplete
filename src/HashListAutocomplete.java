@@ -18,9 +18,9 @@ public class HashListAutocomplete implements Autocompletor
     }
     public void initialize(String[] terms, double[] weights)
     {
-        myMap.clear();
-        myMap=new HashMap<String, List<Term>>();
 
+        myMap=new HashMap<String, List<Term>>();
+        myMap.clear();
         for(int i =0; i< terms.length;i++)
         {
             Term t = new Term(terms[i],weights[i]);
