@@ -28,7 +28,10 @@ public class HashListAutocomplete implements Autocompletor
                 myMap.get(pre).add(t);
             }
         }
-
+        for(String key:myMap.keySet())
+        {
+            Collections.sort(myMap.get(key), Comparator.comparing(Term::getWeight).reversed());
+        }
 
     }
     public List<Term> topMatches(String prefix, int k) {
