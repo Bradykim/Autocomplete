@@ -18,6 +18,14 @@ public class HashListAutocomplete implements Autocompletor
     }
     public void initialize(String[] terms, double[] weights)
     {
+        if(myMap.isEmpty())
+        {
+           myMap=new HashMap<>();
+        }
+        else {
+            myMap.clear();
+        }
+
         for(int i =0; i< terms.length;i++)
         {
             Term t = new Term(terms[i],weights[i]);
@@ -25,10 +33,9 @@ public class HashListAutocomplete implements Autocompletor
             {
                 ArrayList<Term> arr = new ArrayList<>();
                 String pre = t.getWord().substring(0,j);
-                if(!myMap.containsKey(pre))
-                {
-                    myMap.put(pre,arr);
-                }
+
+                myMap.putIfAbsent(pre,arr);
+
                 myMap.get(pre).add(t);
             }
         }
