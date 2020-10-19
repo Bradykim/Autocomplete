@@ -31,7 +31,7 @@ public class HashListAutocomplete implements Autocompletor
                 for(int j =0; j<key.length();j++)
                 {
                     String prefix = key.substring(0,i);
-                    myMap.putIfAbsent(prefix,new ArrayList<Term>());
+                    myMap.putIfAbsent(prefix,new ArrayList<>());
                     myMap.get(key).add(new Term(key,weights[i]));
                 }
 
