@@ -26,7 +26,7 @@ public class HashListAutocomplete implements Autocompletor
             {
                 ArrayList<Term> arr = new ArrayList<>();
                 String pre ="";
-                if(j<=t.getWord().length())
+                if(j<=t.getWord().length()+1)
                 {
                     pre = t.getWord().substring(0,j);
                 }
@@ -44,15 +44,13 @@ public class HashListAutocomplete implements Autocompletor
         if(k==0){
             return new ArrayList<>();
         }
-        if(myMap.containsKey(prefix))
-        {
-            List<Term> all = myMap.get(prefix);
-            List<Term> list = all.subList(0,Math.min(k,all.size()));
-            return list;
+        if(!myMap.containsKey(prefix)){
+            return new ArrayList<>();
         }
-        else{
-            throw new RuntimeException("Specified key doesn't exist in map");
-        }
+        List<Term> all = myMap.get(prefix);
+        List<Term> list = all.subList(0,Math.min(k,all.size()));
+        return list;
+
 
 
 
